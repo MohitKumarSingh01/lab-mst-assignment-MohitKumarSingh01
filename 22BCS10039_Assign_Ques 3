@@ -1,0 +1,58 @@
+public class ThreeStringEncoder {
+
+    public static String[] splitString(String str) {
+        int len = str.length();
+        int base = len / 3;
+        int rem = len % 3;
+
+        int frontLen = base;
+        int midLen = base;
+        int endLen = base;
+
+        if (rem == 1) {
+            midLen += 1;
+        } else if (rem == 2) {
+            frontLen += 1;
+            endLen += 1;
+        }
+
+        String front = str.substring(0, frontLen);
+        String middle = str.substring(frontLen, frontLen + midLen);
+        String end = str.substring(frontLen + midLen);
+
+        return new String[]{front, middle, end};
+    }
+
+    public static String toggleCase(String str) {
+        StringBuilder toggled = new StringBuilder();
+        for (char ch : str.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                toggled.append(Character.toLowerCase(ch));
+            } else if (Character.isLowerCase(ch)) {
+                toggled.append(Character.toUpperCase(ch));
+            } else {
+                toggled.append(ch);
+            }
+        }
+        return toggled.toString();
+    }
+
+    public static void main(String[] args) {
+        String input1 = "John";
+        String input2 = "Johny";
+        String input3 = "Janardhan";
+
+        String[] s1 = splitString(input1);
+        String[] s2 = splitString(input2);
+        String[] s3 = splitString(input3);
+
+        String output1 = s1[0] + s2[1] + s3[2];
+        String output2 = s1[1] + s2[2] + s3[0];
+        String output3 = s1[2] + s2[0] + s3[1];
+        output3 = toggleCase(output3);
+
+        System.out.println("Output1: " + output1);
+        System.out.println("Output2: " + output2);
+        System.out.println("Output3: " + output3);
+    }
+}
