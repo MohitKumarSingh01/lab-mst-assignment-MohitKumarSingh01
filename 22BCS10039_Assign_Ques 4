@@ -1,0 +1,31 @@
+public class MathOperations {
+
+    // Add two integers
+    int operate(int a, int b) {
+        return a + b;
+    }
+
+    // Add three integers
+    int operate(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Multiply two doubles
+    double operate(double a, double b) {
+        return a * b;
+    }
+
+    // Raise an integer to the power of another
+    double operate(int base, double exponent) {
+        return Math.pow(base, exponent);
+    }
+
+    public static void main(String[] args) {
+        MathOperations math = new MathOperations();
+
+        System.out.println("Addition of 2 and 3: " + math.operate(2, 3));
+        System.out.println("Addition of 1, 2 and 3: " + math.operate(1, 2, 3));
+        System.out.println("Multiplication of 2.5 and 4.0: " + math.operate(2.5, 4.0));
+        System.out.println("2 raised to power 3.0: " + math.operate(2, 3.0));
+    }
+}
