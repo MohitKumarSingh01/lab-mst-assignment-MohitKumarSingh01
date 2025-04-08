@@ -1,0 +1,54 @@
+public class AlphabetAppender {
+
+    public static int getCharValue(char ch) {
+        return Character.toLowerCase(ch) - 'a' + 1;
+    }
+
+    public static String processString(String input) {
+        StringBuilder result = new StringBuilder();
+        input = input.toLowerCase();
+        int n = input.length();
+
+        for (int i = 0; i < n; ) {
+            char ch = input.charAt(i);
+
+            if (!Character.isLetter(ch)) {
+                result.append(ch);
+                i++;
+            } else {
+                if (i + 1 < n && Character.isLetter(input.charAt(i + 1))) {
+                    char ch1 = ch;
+                    char ch2 = input.charAt(i + 1);
+                    int sum = getCharValue(ch1) + getCharValue(ch2);
+                    result.append(ch1);
+                    if (sum % 26 == 0) {
+                        result.append('0');
+                    } else {
+                        result.append((char) ('a' + (sum % 26 - 1)));
+                    }
+                    result.append(ch2);
+                    i += 2;
+                } else {
+                    result.append(ch);
+                    i++;
+                }
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String input1 = "ay";
+        String input2 = "ac";
+        String input3 = "12";
+        String input4 = "1a";
+        String input5 = "ac 12a";
+
+        System.out.println("Input: " + input1 + " => Output: " + processString(input1));
+        System.out.println("Input: " + input2 + " => Output: " + processString(input2));
+        System.out.println("Input: " + input3 + " => Output: " + processString(input3));
+        System.out.println("Input: " + input4 + " => Output: " + processString(input4));
+        System.out.println("Input: " + input5 + " => Output: " + processString(input5));
+    }
+}
